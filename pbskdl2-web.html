@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>pbskdl2 web edition</title>
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    </head>
+    <body>
+        <div id="header">
+            <p>content is not hosted on this website. for educational or personal use only.</p>
+            <p>if a m3u8 stream uses multiple audio tracks, use this command to download: `youtube-dl -f bestvideo+multiple_audio_tracks-English [link]`</p>
+        </div>
+        <div id="form">
+            <label for="programs">select show:</label><br>
+            <select name="programs" id="programs"></select>
+        </div>
+        <div id="lmao"></div>
+
+        <script>
+            $.ajaxPrefilter(function(options) {
+                if (options.crossDomain && jQuery.support.cors) {
+                    options.url = "https://morning-garden-72546.herokuapp.com/" + options.url;
+                }
+            });
+
+            function getContent(prog) {
+                $.getJSON('https://content.services.pbskids.org/v2/kidspbsorg/programs/' + prog + "/", function(data) {
+                    $("#lmao").append("<p>episodes:</p>");
+                    for (ep in data.collections.episodes.content) {
+                        var episode = data.collections.episodes.content[ep];
+                        $("#lmao").append("<p>" + data.collections.episodes.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a></p>");
+                    }
+                    $("#lmao").append("<p>clips:</p>");
+                    for (ep in data.collections.clips.content) {
+                        var episode = data.collections.clips.content[ep];
+                        $("#lmao").append("<p>" + data.collections.clips.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a></p>");
+                    }
+                    $("#lmao").append("<p>promoted content:</p>");
+                    for (ep in data.collections.promoted_content.content) {
+                        var episode = data.collections.promoted_content.content[ep];
+                        $("#lmao").append("<p>" + data.collections.promoted_content.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a></p>");
+                    }
+                });
+            }
+
+            $.getJSON('https://content.services.pbskids.org/v2/kidspbsorg/home', function(data) {
+                for (collection in data.collections) {
+                    for (program in data.collections[collection]["content"]) {
+                        if ("slug" in data.collections[collection]["content"][program]) {
+                            if (data.collections[collection]["content"][program]["slug"]=== "elinor-wonders-why") {
+                                $("#programs").append("<option value=" + data.collections[collection]["content"][program]["slug"] + " selected>" + data.collections[collection]["content"][program]["title"] + "</option>");
+                            } else {
+                                $("#programs").append("<option value=" + data.collections[collection]["content"][program]["slug"] + ">" + data.collections[collection]["content"][program]["title"] + "</option>");
+                            }
+                        }
+                    }
+                }
+
+                $(document).ready(function() {
+                    $("#programs").change(function() {
+                        $("#lmao").empty();
+                        var e = document.getElementById("programs");
+                        var selProgram = e.value;
+                        getContent(selProgram);
+                    });
+                });
+
+                var e = document.getElementById("programs");
+                var selProgram = e.value;
+                getContent(selProgram);
+            });
+        </script>
+    </body>
+</html>
