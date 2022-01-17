@@ -28,8 +28,8 @@
                     for (ep in data.collections.episodes.content) {
                         var episode = data.collections.episodes.content[ep];
                         for (sub in episode.closedCaptions) {
-                            if (sub.format === "WebVTT") {
-                                var subs = sub.URI;
+                            if (episode.closedCaptions[sub].format === "WebVTT") {
+                                var subs = episode.closedCaptions[sub].URI;
                             }
                         }
                         $("#lmao").append("<p>" + data.collections.episodes.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
@@ -38,8 +38,8 @@
                     for (ep in data.collections.clips.content) {
                         var episode = data.collections.clips.content[ep];
                         for (sub in episode.closedCaptions) {
-                            if (sub.format === "WebVTT") {
-                                var subs = sub.URI;
+                            if (episode.closedCaptions[sub].format === "WebVTT") {
+                                var subs = episode.closedCaptions[sub].URI;
                             }
                         }
                         $("#lmao").append("<p>" + data.collections.clips.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
@@ -48,8 +48,8 @@
                     for (ep in data.collections.promoted_content.content) {
                         var episode = data.collections.promoted_content.content[ep];
                         for (sub in episode.closedCaptions) {
-                            if (sub.format === "WebVTT") {
-                                var subs = sub.URI;
+                            if (episode.closedCaptions[sub].format === "WebVTT") {
+                                var subs = episode.closedCaptions[sub].URI;
                             }
                         }
                         $("#lmao").append("<p>" + data.collections.promoted_content.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
