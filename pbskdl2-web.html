@@ -27,17 +27,17 @@
                     $("#lmao").append("<p>episodes:</p>");
                     for (ep in data.collections.episodes.content) {
                         var episode = data.collections.episodes.content[ep];
-                        $("#lmao").append("<p>" + data.collections.episodes.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a></p>");
+                        $("#lmao").append("<p>" + data.collections.episodes.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + episode.closedCaptions[3] + "\">" + episode.closedCaptions[3] + "</a></p>");
                     }
                     $("#lmao").append("<p>clips:</p>");
                     for (ep in data.collections.clips.content) {
                         var episode = data.collections.clips.content[ep];
-                        $("#lmao").append("<p>" + data.collections.clips.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a></p>");
+                        $("#lmao").append("<p>" + data.collections.clips.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + episode.closedCaptions[3] + "\">" + episode.closedCaptions[3] + "</a></p>");
                     }
                     $("#lmao").append("<p>promoted content:</p>");
                     for (ep in data.collections.promoted_content.content) {
                         var episode = data.collections.promoted_content.content[ep];
-                        $("#lmao").append("<p>" + data.collections.promoted_content.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a></p>");
+                        $("#lmao").append("<p>" + data.collections.promoted_content.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + episode.closedCaptions[3] + "\">" + episode.closedCaptions[3] + "</a></p>");
                     }
                 });
             }
