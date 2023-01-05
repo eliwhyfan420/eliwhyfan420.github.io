@@ -19,7 +19,6 @@
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
 
-            
             $.ajaxPrefilter(function(options) {
                 if (options.crossDomain && jQuery.support.cors) {
                     options.url = "https://hopscotch.buny.plus:9364/" + options.url;
@@ -76,20 +75,25 @@
 
                 $(document).ready(function() {
                     $("#programs").change(function() {
-                        $("#lmao").empty();
-                        var e = document.getElementById("programs");
-                        var selProgram = e.value;
-                        getContent(selProgram);
+                        if (urlParams.has('show')) {
+                            $("#lmao").empty();
+                            getContent(urlParams.get('show'));
+                        } else {
+                            $("#lmao").empty();
+                            var e = document.getElementById("programs");
+                            var selProgram = e.value;
+                            getContent(selProgram);
+                        }
                     });
                 });
 
-                var e = document.getElementById("programs");
-                var selProgram = e.value;
-                getContent(selProgram);
-                
                 if (urlParams.has('show')) {
                     $("#lmao").empty();
                     getContent(urlParams.get('show'));
+                } else {
+                    var e = document.getElementById("programs");
+                    var selProgram = e.value;
+                    getContent(selProgram);
                 }
             });
         </script>
