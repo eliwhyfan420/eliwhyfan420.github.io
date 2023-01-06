@@ -67,12 +67,14 @@
                     $.getJSON('https://producerplayer.services.pbskids.org/show-list/?shows=' + prog + "&type=episode", function(data) {
                             for (ep in data.items) {
                                 var episode = data.items[ep];
-                                for (sub in episode.captions) {
+                                for (subtitle in episode.captions) {
+                                    sub = episode.captions[subtitle];
                                     if (sub.profile === "WebVTT") {
                                         var subs = sub.url;
                                     }
                                 }
-                                for (vid in episode.videos) {
+                                for (video in episode.videos) {
+                                    var vid = episode.videos[video];
                                     if (vid.profile = "mp4-16x9-720p") {
                                         const vid720 = vid.url;
                                     } else if (vid.profile = "hls-16x9-1080p") {
@@ -85,12 +87,14 @@
                         $.getJSON('https://producerplayer.services.pbskids.org/show-list/?shows=' + prog + "&type=clip", function(data) {
                             for (ep in data.items) {
                                 var episode = data.items[ep];
-                                for (sub in episode.captions) {
+                                for (subtitle in episode.captions) {
+                                    sub = episode.captions[subtitle];
                                     if (sub.profile === "WebVTT") {
                                         var subs = sub.url;
                                     }
                                 }
-                                for (vid in episode.videos) {
+                                for (video in episode.videos) {
+                                    var vid = episode.videos[video];
                                     if (vid.profile = "mp4-16x9-720p") {
                                         const vid720 = vid.url;
                                     } else if (vid.profile = "hls-16x9-1080p") {
