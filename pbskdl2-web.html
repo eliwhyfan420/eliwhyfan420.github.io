@@ -66,6 +66,8 @@
                     console.log("failed. trying producerplayer")
                     $.getJSON('https://producerplayer.services.pbskids.org/show-list/?shows=' + prog + "&type=episode", function(data) {
                             for (ep in data.items) {
+                                var vid720 = undefined;
+                                var vidhls = undefined;
                                 var episode = data.items[ep];
                                 for (subtitle in episode.captions) {
                                     sub = episode.captions[subtitle];
@@ -75,17 +77,19 @@
                                 }
                                 for (video in episode.videos) {
                                     var vid = episode.videos[video];
-                                    if (vid.profile = "mp4-16x9-720p") {
-                                        const vid720 = vid.url;
-                                    } else if (vid.profile = "hls-16x9-1080p") {
-                                        const vidhls = vid.url;
+                                    if (vid.profile === "mp4-16x9-720p") {
+                                        vid720 = vid.url;
+                                    } else if (vid.profile === "hls-16x9-1080p") {
+                                        vidhls = vid.url;
                                     }
                                 }
-                                $("#lmao").append("<p>" + episode.title + "<br>m3u8 (multi quality): <a href=\"" + episode.videos + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
+                                $("#lmao").append("<p>" + episode.title + "<br>m3u8 (multi quality): <a href=\"" + vidhls + "\">" + vidhls + "</a><br>mp4 (720p): <a href=\"" + vid720 + "\">" + vid720 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
                             }
                         })
                         $.getJSON('https://producerplayer.services.pbskids.org/show-list/?shows=' + prog + "&type=clip", function(data) {
                             for (ep in data.items) {
+                                var vid720 = undefined;
+                                var vidhls = undefined;
                                 var episode = data.items[ep];
                                 for (subtitle in episode.captions) {
                                     sub = episode.captions[subtitle];
@@ -95,13 +99,15 @@
                                 }
                                 for (video in episode.videos) {
                                     var vid = episode.videos[video];
-                                    if (vid.profile = "mp4-16x9-720p") {
-                                        const vid720 = vid.url;
-                                    } else if (vid.profile = "hls-16x9-1080p") {
-                                        const vidhls = vid.url;
+                                    console.log(vid)
+                                    console.log(vid.url)
+                                    if (vid.profile === "mp4-16x9-720p") {
+                                        vid720 = vid.url;
+                                    } else if (vid.profile === "hls-16x9-1080p") {
+                                        vidhls = vid.url;
                                     }
                                 }
-                                $("#lmao").append("<p>" + episode.title + "<br>m3u8 (multi quality): <a href=\"" + episode.videos + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
+                                $("#lmao").append("<p>" + episode.title + "<br>m3u8 (multi quality): <a href=\"" + vidhls + "\">" + vidhls + "</a><br>mp4 (720p): <a href=\"" + vid720 + "\">" + vid720 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
                             }
                         })
                 });
