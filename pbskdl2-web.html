@@ -66,7 +66,7 @@
                     console.log("failed. trying producerplayer")
                     $.getJSON('https://producerplayer.services.pbskids.org/show-list/?shows=' + prog + "&type=episode", function(data) {
                             for (ep in data.items) {
-                                var episode = ep;
+                                var episode = data.items[ep];
                                 for (sub in episode.captions) {
                                     if (sub.profile === "WebVTT") {
                                         var subs = sub.url;
@@ -84,7 +84,7 @@
                         })
                         $.getJSON('https://producerplayer.services.pbskids.org/show-list/?shows=' + prog + "&type=clip", function(data) {
                             for (ep in data.items) {
-                                var episode = ep;
+                                var episode = data.items[ep];
                                 for (sub in episode.captions) {
                                     if (sub.profile === "WebVTT") {
                                         var subs = sub.url;
