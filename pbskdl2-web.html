@@ -28,7 +28,43 @@
             function getContent(prog) {
                 $.getJSON('https://content.services.pbskids.org/v2/kidspbsorg/programs/' + prog + "/", function(data) {
                     if (data.errorCode) {
-                        $.getJSON('https://producerplayer.services.pbskids.org/show-list/?shows=' + prog + "&type=episode", function(data) {
+                        console.log("loll")
+                    } else {
+                        $("#lmao").append("<p>episodes:</p>");
+                        for (ep in data.collections.episodes.content) {
+                            var episode = data.collections.episodes.content[ep];
+                            for (sub in episode.closedCaptions) {
+                                if (episode.closedCaptions[sub].format === "WebVTT") {
+                                    var subs = episode.closedCaptions[sub].URI;
+                                }
+                            }
+                            $("#lmao").append("<p>" + data.collections.episodes.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
+                        }
+                        $("#lmao").append("<p>clips:</p>");
+                        for (ep in data.collections.clips.content) {
+                            var episode = data.collections.clips.content[ep];
+                            for (sub in episode.closedCaptions) {
+                                if (episode.closedCaptions[sub].format === "WebVTT") {
+                                    var subs = episode.closedCaptions[sub].URI;
+                                }
+                            }
+                            $("#lmao").append("<p>" + data.collections.clips.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
+                        }
+                        $("#lmao").append("<p>promoted content:</p>");
+                        for (ep in data.collections.promoted_content.content) {
+                            var episode = data.collections.promoted_content.content[ep];
+                            for (sub in episode.closedCaptions) {
+                                if (episode.closedCaptions[sub].format === "WebVTT") {
+                                    var subs = episode.closedCaptions[sub].URI;
+                                }
+                            }
+                            $("#lmao").append("<p>" + data.collections.promoted_content.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
+                        }
+                    }
+                })
+                .fail(function() {
+                    console.log("failed. trying producerplayer")
+                    $.getJSON('https://producerplayer.services.pbskids.org/show-list/?shows=' + prog + "&type=episode", function(data) {
                             for (ep in data.items) {
                                 var episode = ep;
                                 for (sub in episode.captions) {
@@ -64,38 +100,6 @@
                                 $("#lmao").append("<p>" + episode.title + "<br>m3u8 (multi quality): <a href=\"" + episode.videos + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
                             }
                         })
-                    } else {
-                        $("#lmao").append("<p>episodes:</p>");
-                        for (ep in data.collections.episodes.content) {
-                            var episode = data.collections.episodes.content[ep];
-                            for (sub in episode.closedCaptions) {
-                                if (episode.closedCaptions[sub].format === "WebVTT") {
-                                    var subs = episode.closedCaptions[sub].URI;
-                                }
-                            }
-                            $("#lmao").append("<p>" + data.collections.episodes.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
-                        }
-                        $("#lmao").append("<p>clips:</p>");
-                        for (ep in data.collections.clips.content) {
-                            var episode = data.collections.clips.content[ep];
-                            for (sub in episode.closedCaptions) {
-                                if (episode.closedCaptions[sub].format === "WebVTT") {
-                                    var subs = episode.closedCaptions[sub].URI;
-                                }
-                            }
-                            $("#lmao").append("<p>" + data.collections.clips.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
-                        }
-                        $("#lmao").append("<p>promoted content:</p>");
-                        for (ep in data.collections.promoted_content.content) {
-                            var episode = data.collections.promoted_content.content[ep];
-                            for (sub in episode.closedCaptions) {
-                                if (episode.closedCaptions[sub].format === "WebVTT") {
-                                    var subs = episode.closedCaptions[sub].URI;
-                                }
-                            }
-                            $("#lmao").append("<p>" + data.collections.promoted_content.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
-                        }
-                    }
                 });
             }
 
