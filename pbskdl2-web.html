@@ -7,7 +7,7 @@
     <body>
         <div id="header">
             <p>content is not hosted on this website. for educational or personal use only.</p>
-            <p>if a m3u8 stream uses multiple audio tracks, use this command to download: `youtube-dl -f bestvideo+multiple_audio_tracks-English [link]`</p>
+            <p>if an hls stream uses multiple audio tracks, use this command to download: `youtube-dl -f bestvideo+multiple_audio_tracks-English [link]`</p>
         </div>
         <div id="form">
             <label for="programs">select show:</label><br>
@@ -38,7 +38,7 @@
                                     var subs = episode.closedCaptions[sub].URI;
                                 }
                             }
-                            $("#lmao").append("<p>" + data.collections.episodes.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
+                            $("#lmao").append("<p>" + data.collections.episodes.content[ep].title + "<br>hls (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
                         }
                         $("#lmao").append("<p>clips:</p>");
                         for (ep in data.collections.clips.content) {
@@ -48,7 +48,7 @@
                                     var subs = episode.closedCaptions[sub].URI;
                                 }
                             }
-                            $("#lmao").append("<p>" + data.collections.clips.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
+                            $("#lmao").append("<p>" + data.collections.clips.content[ep].title + "<br>hls (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
                         }
                         $("#lmao").append("<p>promoted content:</p>");
                         for (ep in data.collections.promoted_content.content) {
@@ -58,7 +58,7 @@
                                     var subs = episode.closedCaptions[sub].URI;
                                 }
                             }
-                            $("#lmao").append("<p>" + data.collections.promoted_content.content[ep].title + "<br>m3u8 (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
+                            $("#lmao").append("<p>" + data.collections.promoted_content.content[ep].title + "<br>hls (multi quality): <a href=\"" + episode.URI + "\">" + episode.URI + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>mp4 (720p): <a href=\"" + episode.mp4 + "\">" + episode.mp4 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
                         }
                     }
                 })
@@ -83,7 +83,7 @@
                                         vidhls = vid.url;
                                     }
                                 }
-                                $("#lmao").append("<p>" + episode.title + "<br>m3u8 (multi quality): <a href=\"" + vidhls + "\">" + vidhls + "</a><br>mp4 (720p): <a href=\"" + vid720 + "\">" + vid720 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
+                                $("#lmao").append("<p>" + episode.title + "<br>hls (multi quality): <a href=\"" + vidhls + "\">" + vidhls + "</a><br>mp4 (720p): <a href=\"" + vid720 + "\">" + vid720 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
                             }
                         })
                         $.getJSON('https://producerplayer.services.pbskids.org/show-list/?shows=' + prog + "&type=clip", function(data) {
@@ -107,7 +107,7 @@
                                         vidhls = vid.url;
                                     }
                                 }
-                                $("#lmao").append("<p>" + episode.title + "<br>m3u8 (multi quality): <a href=\"" + vidhls + "\">" + vidhls + "</a><br>mp4 (720p): <a href=\"" + vid720 + "\">" + vid720 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
+                                $("#lmao").append("<p>" + episode.title + "<br>hls (multi quality): <a href=\"" + vidhls + "\">" + vidhls + "</a><br>mp4 (720p): <a href=\"" + vid720 + "\">" + vid720 + "</a><br>subs (vtt): <a href=\"" + subs + "\">" + subs + "</a></p>");
                             }
                         })
                 });
